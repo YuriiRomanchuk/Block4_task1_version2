@@ -22,8 +22,8 @@ public class AccessPoint {
     }
 
     public void startProgram() {
-
-        List<Validator> validators = receiveValidators();
+/*
+        List<Validator> validators = receiveValidators();*/
 
     }
 
