@@ -25,6 +25,7 @@ public class IntInitializer<T> implements FieldInitializer<T> {
         boolean continueInitialize = true;
 
         while (continueInitialize) {
+            viewDataController.printInputFieldData(fieldName);
             int i = viewDataController.inputIntValue(fieldName);
             if (validator.validateValue(i)) {
                 consumer.accept(model, i);

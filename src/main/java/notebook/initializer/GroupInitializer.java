@@ -27,9 +27,10 @@ public class GroupInitializer implements FieldInitializer<UserDataModel> {
         boolean continueInitialize = true;
 
         while (continueInitialize) {
+            viewDataController.printInputFieldData(fieldName);
             String s = viewDataController.inputStringValue(fieldName);
             if (validator.validateValue(s)) {
-                biConsumer.accept(userDataModel, Groups.valueOf(s.trim().toUpperCase()));
+                biConsumer.accept(userDataModel, Groups.valueOf(s));
                 continueInitialize = false;
             }
         }

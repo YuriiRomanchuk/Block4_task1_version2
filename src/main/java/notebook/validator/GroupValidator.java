@@ -15,7 +15,7 @@ public class GroupValidator implements Validator<String> {
     @Override
     public boolean validateValue(String value) {
         try {
-            Groups.valueOf(value.trim().toUpperCase());
+            Groups.valueOf(value);
             return true;
         } catch (IllegalArgumentException e) {
             System.out.println(String.format("Invalid group %s! Groups include: ", value));

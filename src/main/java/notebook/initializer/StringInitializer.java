@@ -29,6 +29,7 @@ public class StringInitializer<T> implements FieldInitializer<T> {
 
         boolean continueInitialize = true;
         while (continueInitialize) {
+            viewDataController.printInputFieldData(fieldName);
             String s = viewDataController.inputStringValue(fieldName);
             if (validator.validateValue(s)) {
                 consumer.accept(model, s);

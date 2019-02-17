@@ -41,7 +41,7 @@ public class DataController {
 
         List<FieldInitializer<UserDataModel>> initializers = new ArrayList<>();
 
-        initializers.add(new StringInitializer<>("lastName", viewDataController, stingValidator, (userDataModel1, lastName) -> userDataModel1.setLastName(lastName)));
+        initializers.add(new StringInitializer<>("lastName", viewDataController, stingValidator, UserDataModel::setLastName));
         initializers.add(new StringInitializer<>("firstName", viewDataController, stingValidator, UserDataModel::setFirstName));
         initializers.add(new StringInitializer<>("middleName", viewDataController, stingValidator, UserDataModel::setMiddleName));
         initializers.add(new StringInitializer<>("nickname", viewDataController, stingNumberValidator, UserDataModel::setNickname));
