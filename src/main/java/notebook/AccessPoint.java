@@ -10,7 +10,6 @@ import notebook.model.UserDataModel;
 import notebook.validator.GroupValidator;
 import notebook.validator.IntValidator;
 import notebook.validator.StringValidator;
-import notebook.validator.Validator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +26,6 @@ public class AccessPoint {
 
     public void startProgram() {
 
-        UserDataModel userDataModel = new UserDataModel();
         List<FieldInitializer<UserDataModel>> fieldInitializers = receiveMainInitializer();
 
         for (FieldInitializer<UserDataModel> fieldInitializer : fieldInitializers) {
