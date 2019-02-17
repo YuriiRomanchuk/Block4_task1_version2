@@ -8,7 +8,9 @@ import notebook.validator.GroupValidator;
 import notebook.validator.IntValidator;
 import notebook.validator.StringValidator;
 
+import javax.xml.crypto.Data;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class DataController {
@@ -26,6 +28,16 @@ public class DataController {
         for (FieldInitializer<UserDataModel> fieldInitializer : fieldInitializers) {
             fieldInitializer.initialize(userDataModel);
         }
+
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(userDataModel.getLastName());
+        stringBuilder.append(userDataModel.getFirstName(), 0, 1);
+        stringBuilder.append(userDataModel.getMiddleName(), 0, 1);
+
+        Date date = new Date();
+        userDataModel.setFullName(stringBuilder.toString()) ;
+        userDataModel.setEntryDate(date.toString());
+        userDataModel.setDateOfLastChange(date.toString());
     }
 
     private List<FieldInitializer<UserDataModel>> receiveMainInitializer() {
