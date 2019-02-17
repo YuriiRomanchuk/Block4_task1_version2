@@ -29,6 +29,7 @@ public class AddressInitializer implements FieldInitializer<UserDataModel> {
 
         boolean continueCreateAddress = true;
         while (continueCreateAddress) {
+            viewDataController.printInputFieldData(address);
             UserDataAddress userDataAddress = new UserDataAddress();
             for (FieldInitializer fieldInitializer : receiveAddressFieldInitializer) {
                 fieldInitializer.initialize(userDataAddress);

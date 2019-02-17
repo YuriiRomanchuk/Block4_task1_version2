@@ -45,11 +45,17 @@ public class ViewDataController {
     }
 
     public String inputStringValue(String fieldName) {
-
         while (!in.hasNext()) {
             printWrongInputData(fieldName);
         }
         return in.next();
+    }
+
+    public int inputIntValue(String fieldName) {
+        while (!in.hasNextInt()) {
+            printWrongInputData(fieldName);
+        }
+        return in.nextInt();
     }
 
 }

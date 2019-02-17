@@ -1,19 +1,18 @@
 package notebook.initializer;
 
 import notebook.controller.ViewDataController;
-import notebook.model.UserDataModel;
 import notebook.validator.Validator;
 
 import java.util.function.BiConsumer;
 
-public class StringInitializer implements FieldInitializer<UserDataModel> {
+public class StringInitializer<T> implements FieldInitializer<T> {
 
     private final String fieldName;
     private final ViewDataController viewDataController;
     private final Validator<String> validator;
-    private final BiConsumer<UserDataModel, String> consumer;
+    private final BiConsumer<T, String> consumer;
 
-    public StringInitializer(String fieldName, ViewDataController viewDataController, Validator<String> validator, BiConsumer<UserDataModel, String> consumer) {
+    public StringInitializer(String fieldName, ViewDataController viewDataController, Validator<String> validator, BiConsumer<T, String> consumer) {
         this.fieldName = fieldName;
         this.viewDataController = viewDataController;
         this.validator = validator;
@@ -21,16 +20,27 @@ public class StringInitializer implements FieldInitializer<UserDataModel> {
     }
 
     @Override
-    public void initialize(UserDataModel userDataModel) {
+    public void initialize(T model) {
+
+        if (!inputNonObligatoryField(validator.isObligatoryField(), fieldName)) {
+            consumer.accept(model, "");
+            return;
+        }
 
         boolean continueInitialize = true;
-
         while (continueInitialize) {
             String s = viewDataController.inputStringValue(fieldName);
             if (validator.validateValue(s)) {
-                consumer.accept(userDataModel, s);
+                consumer.accept(model, s);
                 continueInitialize = false;
             }
         }
+    }
+
+    private boolean inputNonObligatoryField(boolean obligatoryField, String fieldName) {
+        if (!obligatoryField) {
+            return viewDataController.receiveAnswerAboutInputValue(fieldName);
+        }
+        return true;
     }
 }

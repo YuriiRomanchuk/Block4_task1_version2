@@ -10,7 +10,11 @@ public class IntValidator implements Validator<Integer> {
 
     @Override
     public boolean validateValue(Integer value) {
-        return true;
+
+        if (value > 0) {
+            return true;
+        }
+        return false;
     }
 
     public boolean isObligatoryField() {

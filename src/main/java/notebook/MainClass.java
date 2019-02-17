@@ -10,5 +10,4 @@ public class MainClass {
         AccessPoint accessPoint = new AccessPoint(viewDataController, new UserDataModel());
         accessPoint.startProgram();
     }
-
 }

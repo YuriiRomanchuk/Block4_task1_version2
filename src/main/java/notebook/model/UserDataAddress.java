@@ -2,13 +2,13 @@ package notebook.model;
 
 public class UserDataAddress {
 
-    private String index;
+    private int index;
     private String city;
     private String street;
     private String houseNumber;
-    private String flatNumber;
+    private int flatNumber;
 
-    public void setIndex(String index) {
+    public void setIndex(int index) {
         this.index = index;
     }
 
@@ -24,7 +24,7 @@ public class UserDataAddress {
         this.houseNumber = houseNumber;
     }
 
-    public void setFlatNumber(String flatNumber) {
+    public void setFlatNumber(int flatNumber) {
         this.flatNumber = flatNumber;
     }
 
