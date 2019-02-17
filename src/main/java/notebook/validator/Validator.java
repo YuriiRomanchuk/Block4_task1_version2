@@ -1,7 +1,7 @@
 package notebook.validator;
 
-public interface Validator <T> {
+public interface Validator<T> {
+    boolean validateValue(T value);
 
-    void validateValue(T value);
-
+    boolean isObligatoryField();
 }

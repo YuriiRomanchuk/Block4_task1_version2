@@ -1,25 +1,31 @@
 package notebook.validator;
 
 import notebook.currentEnum.Groups;
-import notebook.model.UserDataModel;
 
-import java.util.function.BiConsumer;
+import java.util.Arrays;
 
-public class GroupValidator implements Validator<Groups> {
+public class GroupValidator implements Validator<String> {
 
-    private BiConsumer<UserDataModel, String> biConsumer;
-    private String fieldName;
     private boolean obligatoryField;
 
-    public GroupValidator(String fieldName, boolean obligatoryField, BiConsumer<UserDataModel, String> biConsumer) {
-        this.biConsumer = biConsumer;
-        this.fieldName = fieldName;
+    public GroupValidator(boolean obligatoryField) {
         this.obligatoryField = obligatoryField;
     }
 
-
     @Override
-    public void validateValue(Groups value) {
+    public boolean validateValue(String value) {
+        try {
+            Groups.valueOf(value.trim().toUpperCase());
+            return true;
+        } catch (IllegalArgumentException e) {
+            System.out.println(String.format("Invalid group %s! Groups include: ", value));
+            Arrays.stream(Groups.values()).forEach(g -> System.out.print(String.format("%s \\s", g)));
+            e.printStackTrace();
+            return false;
+        }
+    }
 
+    public boolean isObligatoryField() {
+        return obligatoryField;
     }
 }

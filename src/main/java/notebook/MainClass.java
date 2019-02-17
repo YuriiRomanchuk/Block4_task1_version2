@@ -1,12 +1,13 @@
 package notebook;
 
 import notebook.controller.ViewDataController;
-import notebook.initializer.UserDataModelInitializer;
+import notebook.model.UserDataModel;
 
 public class MainClass {
 
     public static void main(String[] args) {
-        AccessPoint accessPoint = new AccessPoint(new ViewDataController(System.in), new UserDataModelInitializer());
+        ViewDataController viewDataController = new ViewDataController(System.in);
+        AccessPoint accessPoint = new AccessPoint(viewDataController, new UserDataModel());
         accessPoint.startProgram();
     }
 
