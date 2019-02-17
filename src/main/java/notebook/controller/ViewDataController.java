@@ -48,12 +48,13 @@ public class ViewDataController {
         while (!in.hasNext()) {
             printWrongInputData(fieldName);
         }
-        return in.next();
+        return in.nextLine();
     }
 
     public int inputIntValue(String fieldName) {
         while (!in.hasNextInt()) {
             printWrongInputData(fieldName);
+            in.next();
         }
         return in.nextInt();
     }

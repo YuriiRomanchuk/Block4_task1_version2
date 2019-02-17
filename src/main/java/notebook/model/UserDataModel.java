@@ -1,7 +1,6 @@
 package notebook.model;
 
 
-
 import notebook.currentEnum.Groups;
 
 import java.util.List;

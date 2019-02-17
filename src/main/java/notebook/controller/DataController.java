@@ -52,7 +52,6 @@ public class DataController {
         initializers.add(new StringInitializer<>("homePhoneNumber", viewDataController, phoneNumberValidator, UserDataModel::setLastName));
         initializers.add(new StringInitializer<>("mobilePhoneNumber", viewDataController, phoneNumberValidator, UserDataModel::setLastName));
         initializers.add(new StringInitializer<>("mobilePhoneNumberSecond", viewDataController, phoneNumberValidatorNonObligatory, UserDataModel::setLastName));
-
         initializers.add(new AddressInitializer("Address", viewDataController, receiveAddressFieldInitializer(stingValidator, stingNumberValidator, intValidator), UserDataModel::setUserDataAddresses));
         return initializers;
     }
@@ -60,13 +59,13 @@ public class DataController {
 
     public List<FieldInitializer> receiveAddressFieldInitializer(StringValidator stingValidator, StringValidator stingNumberValidator, IntValidator intValidator) {
 
-        List<FieldInitializer<UserDataAddress>> addressInitializers = new ArrayList<>();
+        List<FieldInitializer> addressInitializers = new ArrayList<>();
         addressInitializers.add(new StringInitializer<>("city", viewDataController, stingValidator, UserDataAddress::setCity));
         addressInitializers.add(new StringInitializer<>("street", viewDataController, stingNumberValidator, UserDataAddress::setStreet));
         addressInitializers.add(new StringInitializer<>("houseNumber", viewDataController, stingNumberValidator, UserDataAddress::setHouseNumber));
         addressInitializers.add(new IntInitializer<>("flatNumber", viewDataController, intValidator, UserDataAddress::setFlatNumber));
         addressInitializers.add(new IntInitializer<>("index", viewDataController, intValidator, UserDataAddress::setIndex));
-        return new ArrayList<>();
+        return addressInitializers;
     }
 
 

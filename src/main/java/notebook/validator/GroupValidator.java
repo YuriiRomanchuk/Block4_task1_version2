@@ -19,7 +19,7 @@ public class GroupValidator implements Validator<String> {
             return true;
         } catch (IllegalArgumentException e) {
             System.out.println(String.format("Invalid group %s! Groups include: ", value));
-            Arrays.stream(Groups.values()).forEach(g -> System.out.print(String.format("%s \\s", g)));
+            Arrays.stream(Groups.values()).forEach(g -> System.out.print(String.format("%s, ", g)));
             e.printStackTrace();
             return false;
         }

@@ -25,13 +25,14 @@ public class GroupInitializer implements FieldInitializer<UserDataModel> {
     public void initialize(UserDataModel userDataModel) {
 
         boolean continueInitialize = true;
-
+        viewDataController.printInputFieldData(fieldName);
         while (continueInitialize) {
-            viewDataController.printInputFieldData(fieldName);
             String s = viewDataController.inputStringValue(fieldName);
             if (validator.validateValue(s)) {
                 biConsumer.accept(userDataModel, Groups.valueOf(s));
                 continueInitialize = false;
+            } else {
+                viewDataController.printWrongInputData(fieldName);
             }
         }
 
