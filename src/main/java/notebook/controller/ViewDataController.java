@@ -5,11 +5,11 @@ import java.util.Scanner;
 
 public class ViewDataController {
 
-    private static String INPUT_DATA = "Input %s = ";
-    private static String WRONG_INPUT_DATA = "Wrong input! Repeat please! ";
-    private static String USER_DATA = "Current user data: \n";
-    private static String USER_QUESTION = " %s is not obligatory. Do you want to input value?(1 - yes, 2 or other - no)";
-    private static String USER_ADDRESS_QUESTION = "Do you want to input one more address?(1 - yes, 2 or other - no)";
+    private static final String INPUT_DATA = "Input %s = ";
+    private static final String WRONG_INPUT_DATA = "Wrong input! Repeat please! ";
+    private static final String USER_DATA = "Current user data: \n";
+    private static final String USER_QUESTION = " %s is not obligatory. Do you want to input value?(1 - yes, 2 or other - no)";
+    private static final String USER_ADDRESS_QUESTION = "Do you want to input one more address?(1 - yes, 2 or other - no)";
     private Scanner in;
 
     public ViewDataController(InputStream in) {

@@ -1,13 +1,18 @@
 package notebook.exception;
 
-import notebook.initializer.IntInitializer;
+import notebook.initializer.StringInitializer;
+import notebook.model.UserData;
 
-public class fieldFillingException extends Exception {
+public class UserDataModelStringException extends Exception {
 
-    IntInitializer initializer;
+    private StringInitializer<UserData> initializer;
 
-    public fieldFillingException(String s, IntInitializer initializer) {
+    public UserDataModelStringException(String s, StringInitializer<UserData> initializer) {
         super(s);
         this.initializer = initializer;
+    }
+
+    public StringInitializer<UserData> getInitializer() {
+        return initializer;
     }
 }

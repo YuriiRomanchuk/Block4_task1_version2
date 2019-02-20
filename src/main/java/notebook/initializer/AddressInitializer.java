@@ -1,21 +1,21 @@
 package notebook.initializer;
 
 import notebook.controller.ViewDataController;
-import notebook.model.UserDataAddress;
-import notebook.model.UserDataModel;
+import notebook.model.UserAddress;
+import notebook.model.UserData;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiConsumer;
 
-public class AddressInitializer implements FieldInitializer<UserDataModel> {
+public class AddressInitializer implements FieldInitializer<UserData> {
 
     private final String address;
     private final ViewDataController viewDataController;
-    private final List<FieldInitializer> receiveAddressFieldInitializer;
-    private final BiConsumer<UserDataModel, List<UserDataAddress>> setUserDataAddresses;
+    private final List<FieldInitializer<UserAddress>> receiveAddressFieldInitializer;
+    private final BiConsumer<UserData, List<UserAddress>> setUserDataAddresses;
 
-    public AddressInitializer(String address, ViewDataController viewDataController, List<FieldInitializer> receiveAddressFieldInitializer, BiConsumer<UserDataModel, List<UserDataAddress>> setUserDataAddresses) {
+    public AddressInitializer(String address, ViewDataController viewDataController, List<FieldInitializer<UserAddress>> receiveAddressFieldInitializer, BiConsumer<UserData, List<UserAddress>> setUserDataAddresses) {
         this.address = address;
         this.viewDataController = viewDataController;
         this.receiveAddressFieldInitializer = receiveAddressFieldInitializer;
@@ -23,23 +23,22 @@ public class AddressInitializer implements FieldInitializer<UserDataModel> {
     }
 
     @Override
-    public void initialize(UserDataModel userDataModel) {
+    public void initialize(UserData userData) {
 
-        List<UserDataAddress> userDataAddresses = new ArrayList<>();
+        List<UserAddress> userAddresses = new ArrayList<>();
 
         boolean continueCreateAddress = true;
         while (continueCreateAddress) {
             viewDataController.printInputFieldData(address);
-            UserDataAddress userDataAddress = new UserDataAddress();
+            UserAddress userAddress = new UserAddress();
             for (FieldInitializer fieldInitializer : receiveAddressFieldInitializer) {
-                fieldInitializer.initialize(userDataAddress);
+                fieldInitializer.initialize(userAddress);
             }
-            userDataAddresses.add(userDataAddress);
+            userAddresses.add(userAddress);
 
-            if (!viewDataController.receiveAnswerAboutInputNewAddress()) {
-                continueCreateAddress = false;
-            }
+            continueCreateAddress = viewDataController.receiveAnswerAboutInputNewAddress();
+
         }
-        setUserDataAddresses.accept(userDataModel, userDataAddresses);
+        setUserDataAddresses.accept(userData, userAddresses);
     }
 }

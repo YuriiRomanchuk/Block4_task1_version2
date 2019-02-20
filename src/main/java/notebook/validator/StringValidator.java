@@ -12,10 +12,7 @@ public class StringValidator implements Validator<String> {
 
     @Override
     public boolean validateValue(String value) {
-        if (value.matches(regex)) {
-            return true;
-        }
-        return false;
+        return value.matches(regex);
     }
 
     public boolean isObligatoryField() {

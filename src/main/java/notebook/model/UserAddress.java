@@ -1,6 +1,6 @@
 package notebook.model;
 
-public class UserDataAddress {
+public class UserAddress {
 
     private int index;
     private String city;
@@ -30,7 +30,7 @@ public class UserDataAddress {
 
     @Override
     public String toString() {
-        return "UserDataAddress{" + "\n" +
+        return "UserAddress{" + "\n" +
                 "index='" + index + '\'' + "\n" +
                 ", city='" + city + '\'' + "\n" +
                 ", street='" + street + '\'' + "\n" +

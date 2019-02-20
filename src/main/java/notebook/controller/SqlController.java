@@ -1,25 +1,32 @@
-package notebook.model;
+package notebook.controller;
 
-import notebook.exception.fieldFillingException;
+import notebook.Patterns;
+import notebook.exception.UserDataModelStringException;
+import notebook.initializer.StringInitializer;
+import notebook.model.UserData;
+import notebook.validator.StringValidator;
 
 import java.util.Arrays;
 
-public class SqlConnector {
+public class SqlController {
 
-    private UserDataModel userDataModel;
+    private UserData userData;
+    private ViewDataController viewDataController;
     private String[] occupiedNicknames = {"anybis", "petro666", "ybivatel"};
 
-    public SqlConnector(UserDataModel userDataModel) {
-        this.userDataModel = userDataModel;
+    public SqlController(UserData userData, ViewDataController viewDataController) {
+        this.userData = userData;
+        this.viewDataController = viewDataController;
     }
 
 
-    public void verifyNickname() throws fieldFillingException{
+    public void verifyNickname() throws UserDataModelStringException {
 
-        long count = Arrays.stream(occupiedNicknames).filter(s -> s.equals(userDataModel.getNickname())).count();
+        long count = Arrays.stream(occupiedNicknames).filter(s -> s.equals(userData.getNickname())).count();
 
         if (count != 0l) {
-            throw new fieldFillingException("Current nick name is busy!", "nickname");
+            StringValidator stringNumberValidator = new StringValidator(true, Patterns.regexStringNumber);
+            throw new UserDataModelStringException("Current nick name is busy!", new StringInitializer<>("nickname", viewDataController, stringNumberValidator, UserData::setNickname));
         }
     }
 

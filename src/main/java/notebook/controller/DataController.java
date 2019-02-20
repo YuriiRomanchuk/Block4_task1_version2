@@ -2,48 +2,45 @@ package notebook.controller;
 
 import notebook.Patterns;
 import notebook.initializer.*;
-import notebook.model.UserDataAddress;
-import notebook.model.UserDataModel;
+import notebook.model.UserAddress;
+import notebook.model.UserData;
 import notebook.validator.GroupValidator;
 import notebook.validator.IntValidator;
 import notebook.validator.StringValidator;
 
-import javax.xml.crypto.Data;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class DataController {
 
-    private UserDataModel userDataModel;
+    private UserData userData;
     private ViewDataController viewDataController;
 
-    public DataController(UserDataModel userDataModel, ViewDataController viewDataController) {
-        this.userDataModel = userDataModel;
+    public DataController(UserData userData, ViewDataController viewDataController) {
+        this.userData = userData;
         this.viewDataController = viewDataController;
     }
 
     public void fillUserDataModel() {
-        List<FieldInitializer<UserDataModel>> fieldInitializers = receiveMainInitializer();
-        for (FieldInitializer<UserDataModel> fieldInitializer : fieldInitializers) {
-            fieldInitializer.initialize(userDataModel);
+        List<FieldInitializer<UserData>> fieldInitializers = receiveMainInitializer();
+        for (FieldInitializer<UserData> fieldInitializer : fieldInitializers) {
+            fieldInitializer.initialize(userData);
         }
 
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(userDataModel.getLastName());
-        stringBuilder.append(userDataModel.getFirstName(), 0, 1);
-        stringBuilder.append(userDataModel.getMiddleName(), 0, 1);
+        userData.setFullName(userData.getLastName() +
+                " " + userData.getFirstName().substring(0, 1) + "." +
+                " " + userData.getMiddleName().substring(0, 1) + ".");
 
         Date date = new Date();
-        userDataModel.setFullName(stringBuilder.toString()) ;
-        userDataModel.setEntryDate(date.toString());
-        userDataModel.setDateOfLastChange(date.toString());
+        userData.setEntryDate(date);
+        userData.setDateOfLastChange(date);
     }
 
-    private List<FieldInitializer<UserDataModel>> receiveMainInitializer() {
+    private List<FieldInitializer<UserData>> receiveMainInitializer() {
 
-        StringValidator stingValidator = new StringValidator(true, Patterns.stringRegex);
-        StringValidator stingNumberValidator = new StringValidator(true, Patterns.regexStringNumber);
+        StringValidator stringValidator = new StringValidator(true, Patterns.stringRegex);
+        StringValidator stringNumberValidator = new StringValidator(true, Patterns.regexStringNumber);
         StringValidator phoneNumberValidator = new StringValidator(true, Patterns.regexPhoneNumber);
         StringValidator phoneNumberValidatorNonObligatory = new StringValidator(false, Patterns.regexPhoneNumber);
         StringValidator emailValidator = new StringValidator(true, Patterns.regexEmail);
@@ -51,32 +48,32 @@ public class DataController {
         GroupValidator groupValidator = new GroupValidator(true);
         IntValidator intValidator = new IntValidator(true);
 
-        List<FieldInitializer<UserDataModel>> initializers = new ArrayList<>();
+        List<FieldInitializer<UserData>> initializers = new ArrayList<>();
 
-        initializers.add(new StringInitializer<>("lastName", viewDataController, stingValidator, UserDataModel::setLastName));
-        initializers.add(new StringInitializer<>("firstName", viewDataController, stingValidator, UserDataModel::setFirstName));
-        initializers.add(new StringInitializer<>("middleName", viewDataController, stingValidator, UserDataModel::setMiddleName));
-        initializers.add(new StringInitializer<>("nickname", viewDataController, stingNumberValidator, UserDataModel::setNickname));
-        initializers.add(new GroupInitializer("groupName", viewDataController, groupValidator, UserDataModel::setGroupName));
-        initializers.add(new StringInitializer<>("comment", viewDataController, stingNumberValidator, UserDataModel::setComment));
-        initializers.add(new StringInitializer<>("skype", viewDataController, stingNumberValidator, UserDataModel::setSkype));
-        initializers.add(new StringInitializer<>("email", viewDataController, emailValidator, UserDataModel::setEmail));
-        initializers.add(new StringInitializer<>("homePhoneNumber", viewDataController, phoneNumberValidator, UserDataModel::setLastName));
-        initializers.add(new StringInitializer<>("mobilePhoneNumber", viewDataController, phoneNumberValidator, UserDataModel::setLastName));
-        initializers.add(new StringInitializer<>("mobilePhoneNumberSecond", viewDataController, phoneNumberValidatorNonObligatory, UserDataModel::setLastName));
-        initializers.add(new AddressInitializer("Address", viewDataController, receiveAddressFieldInitializer(stingValidator, stingNumberValidator, intValidator), UserDataModel::setUserDataAddresses));
+        initializers.add(new StringInitializer<>("lastName", viewDataController, stringValidator, UserData::setLastName));
+        initializers.add(new StringInitializer<>("firstName", viewDataController, stringValidator, UserData::setFirstName));
+        initializers.add(new StringInitializer<>("middleName", viewDataController, stringValidator, UserData::setMiddleName));
+        initializers.add(new StringInitializer<>("nickname", viewDataController, stringNumberValidator, UserData::setNickname));
+        initializers.add(new GroupInitializer("groupName", viewDataController, groupValidator, UserData::setGroupName));
+        initializers.add(new StringInitializer<>("comment", viewDataController, stringNumberValidator, UserData::setComment));
+        initializers.add(new StringInitializer<>("skype", viewDataController, stringNumberValidator, UserData::setSkype));
+        initializers.add(new StringInitializer<>("email", viewDataController, emailValidator, UserData::setEmail));
+        initializers.add(new StringInitializer<>("homePhoneNumber", viewDataController, phoneNumberValidator, UserData::setHomePhoneNumber));
+        initializers.add(new StringInitializer<>("mobilePhoneNumber", viewDataController, phoneNumberValidator, UserData::setMobilePhoneNumber));
+        initializers.add(new StringInitializer<>("mobilePhoneNumberSecond", viewDataController, phoneNumberValidatorNonObligatory, UserData::setMobilePhoneNumberSecond));
+        initializers.add(new AddressInitializer("Address", viewDataController, receiveAddressFieldInitializer(stringValidator, stringNumberValidator, intValidator), UserData::setUserAddresses));
         return initializers;
     }
 
 
-    public List<FieldInitializer> receiveAddressFieldInitializer(StringValidator stingValidator, StringValidator stingNumberValidator, IntValidator intValidator) {
+    public List<FieldInitializer<UserAddress>> receiveAddressFieldInitializer(StringValidator stingValidator, StringValidator stingNumberValidator, IntValidator intValidator) {
 
-        List<FieldInitializer> addressInitializers = new ArrayList<>();
-        addressInitializers.add(new StringInitializer<>("city", viewDataController, stingValidator, UserDataAddress::setCity));
-        addressInitializers.add(new StringInitializer<>("street", viewDataController, stingNumberValidator, UserDataAddress::setStreet));
-        addressInitializers.add(new StringInitializer<>("houseNumber", viewDataController, stingNumberValidator, UserDataAddress::setHouseNumber));
-        addressInitializers.add(new IntInitializer<>("flatNumber", viewDataController, intValidator, UserDataAddress::setFlatNumber));
-        addressInitializers.add(new IntInitializer<>("index", viewDataController, intValidator, UserDataAddress::setIndex));
+        List<FieldInitializer<UserAddress>> addressInitializers = new ArrayList<>();
+        addressInitializers.add(new StringInitializer<>("city", viewDataController, stingValidator, UserAddress::setCity));
+        addressInitializers.add(new StringInitializer<>("street", viewDataController, stingNumberValidator, UserAddress::setStreet));
+        addressInitializers.add(new StringInitializer<>("houseNumber", viewDataController, stingNumberValidator, UserAddress::setHouseNumber));
+        addressInitializers.add(new IntInitializer<>("flatNumber", viewDataController, intValidator, UserAddress::setFlatNumber));
+        addressInitializers.add(new IntInitializer<>("index", viewDataController, intValidator, UserAddress::setIndex));
         return addressInitializers;
     }
 

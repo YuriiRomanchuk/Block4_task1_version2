@@ -6,7 +6,7 @@ import notebook.currentEnum.Groups;
 import java.util.Date;
 import java.util.List;
 
-public class UserDataModel {
+public class UserData {
 
     private String lastName;
     private String firstName;
@@ -21,7 +21,7 @@ public class UserDataModel {
     private String mobilePhoneNumber;
     private String mobilePhoneNumberSecond;
     private Date entryDate;
-    private Date DateOfLastChange;
+    private Date dateOfLastChange;
     private List<UserAddress> userAddresses;
 
     public void setUserAddresses(List<UserAddress> userAddresses) {
@@ -81,7 +81,7 @@ public class UserDataModel {
     }
 
     public void setDateOfLastChange(Date dateOfLastChange) {
-        DateOfLastChange = dateOfLastChange;
+        this.dateOfLastChange = dateOfLastChange;
     }
 
     public String getLastName() {
@@ -137,7 +137,7 @@ public class UserDataModel {
     }
 
     public Date getDateOfLastChange() {
-        return DateOfLastChange;
+        return dateOfLastChange;
     }
 
     public List<UserAddress> getUserAddresses() {
@@ -146,7 +146,7 @@ public class UserDataModel {
 
     @Override
     public String toString() {
-        return "UserDataModel{" + "\n" +
+        return "UserData{" + "\n" +
                 "lastName='" + lastName + '\'' + "\n" +
                 ", firstName='" + firstName + '\'' + "\n" +
                 ", middleName='" + middleName + '\'' + "\n" +
@@ -160,7 +160,7 @@ public class UserDataModel {
                 ", mobilePhoneNumber='" + mobilePhoneNumber + '\'' + "\n" +
                 ", mobilePhoneNumberSecond='" + mobilePhoneNumberSecond + '\'' + "\n" +
                 ", entryDate='" + entryDate + '\'' + "\n" +
-                ", DateOfLastChange='" + DateOfLastChange + '\'' + "\n" +
+                ", dateOfLastChange='" + dateOfLastChange + '\'' + "\n" +
                 ", userAddresses='" + "\n" + userAddresses + '\'' + "\n" +
                 '}';
     }
