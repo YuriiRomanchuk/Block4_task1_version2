@@ -3,6 +3,7 @@ package notebook.model;
 
 import notebook.currentEnum.Groups;
 
+import java.util.Date;
 import java.util.List;
 
 public class UserDataModel {
@@ -19,12 +20,12 @@ public class UserDataModel {
     private String homePhoneNumber;
     private String mobilePhoneNumber;
     private String mobilePhoneNumberSecond;
-    private String entryDate;
-    private String DateOfLastChange;
-    private List<UserDataAddress> userDataAddresses;
+    private Date entryDate;
+    private Date DateOfLastChange;
+    private List<UserAddress> userAddresses;
 
-    public void setUserDataAddresses(List<UserDataAddress> userDataAddresses) {
-        this.userDataAddresses = userDataAddresses;
+    public void setUserAddresses(List<UserAddress> userAddresses) {
+        this.userAddresses = userAddresses;
     }
 
     public void setFullName(String fullName) {
@@ -75,11 +76,11 @@ public class UserDataModel {
         this.middleName = middleName;
     }
 
-    public void setEntryDate(String entryDate) {
+    public void setEntryDate(Date entryDate) {
         this.entryDate = entryDate;
     }
 
-    public void setDateOfLastChange(String dateOfLastChange) {
+    public void setDateOfLastChange(Date dateOfLastChange) {
         DateOfLastChange = dateOfLastChange;
     }
 
@@ -95,6 +96,53 @@ public class UserDataModel {
         return middleName;
     }
 
+    public String getFullName() {
+        return fullName;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public Groups getGroupName() {
+        return groupName;
+    }
+
+    public String getSkype() {
+        return skype;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getHomePhoneNumber() {
+        return homePhoneNumber;
+    }
+
+    public String getMobilePhoneNumber() {
+        return mobilePhoneNumber;
+    }
+
+    public String getMobilePhoneNumberSecond() {
+        return mobilePhoneNumberSecond;
+    }
+
+    public Date getEntryDate() {
+        return entryDate;
+    }
+
+    public Date getDateOfLastChange() {
+        return DateOfLastChange;
+    }
+
+    public List<UserAddress> getUserAddresses() {
+        return userAddresses;
+    }
 
     @Override
     public String toString() {
@@ -113,7 +161,7 @@ public class UserDataModel {
                 ", mobilePhoneNumberSecond='" + mobilePhoneNumberSecond + '\'' + "\n" +
                 ", entryDate='" + entryDate + '\'' + "\n" +
                 ", DateOfLastChange='" + DateOfLastChange + '\'' + "\n" +
-                ", userDataAddresses='" + "\n" + userDataAddresses + '\'' + "\n" +
+                ", userAddresses='" + "\n" + userAddresses + '\'' + "\n" +
                 '}';
     }
 
