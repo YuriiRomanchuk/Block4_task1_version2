@@ -1,18 +1,15 @@
 package notebook.exception;
 
-import notebook.initializer.StringInitializer;
-import notebook.model.UserData;
-
 public class UserDataModelStringException extends Exception {
 
-    private StringInitializer<UserData> initializer;
+    private String fieldName;
 
-    public UserDataModelStringException(String s, StringInitializer<UserData> initializer) {
+    public UserDataModelStringException(String s, String fieldName) {
         super(s);
-        this.initializer = initializer;
+        this.fieldName = fieldName;
     }
 
-    public StringInitializer<UserData> getInitializer() {
-        return initializer;
+    public String getFieldName() {
+        return fieldName;
     }
 }
