@@ -4,6 +4,9 @@ import notebook.exception.UserDataModelStringException;
 import notebook.initializer.DataInitializer;
 import notebook.model.UserData;
 
+import java.util.List;
+import java.util.Map;
+
 public class DataController {
 
     private ViewDataController viewDataController;
@@ -14,9 +17,10 @@ public class DataController {
         this.dataInitializer = new DataInitializer(viewDataController);
     }
 
-    public UserData processUserData() {
+    public UserData processUserData(Map<String, String> userDataValues, List<String> errorsData) {
 
         UserData userData = new UserData();
+        dataInitializer.fillInitializer(userDataValues, errorsData);
         dataInitializer.fillUserDataModel(userData);
 
         SqlController sqlController = new SqlController(userData, viewDataController);

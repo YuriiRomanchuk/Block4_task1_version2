@@ -26,18 +26,18 @@ public class AddressInitializer<T> implements FieldInitializer<T> {
 
         List<UserAddress> userAddresses = new ArrayList<>();
 
-        boolean continueCreateAddress = true;
+      /*  boolean continueCreateAddress = true;
         while (continueCreateAddress) {
-            viewDataController.printInputFieldData(address);
+            viewDataController.printInputFieldData(address);*/
             UserAddress userAddress = new UserAddress();
             for (FieldInitializer fieldInitializer : receiveAddressFieldInitializer) {
                 fieldInitializer.initialize(userAddress);
             }
             userAddresses.add(userAddress);
 
-            continueCreateAddress = viewDataController.receiveAnswerAboutInputNewAddress();
+          /*  continueCreateAddress = viewDataController.receiveAnswerAboutInputNewAddress();
 
-        }
+        }*/
         setUserDataAddresses.accept(userData, userAddresses);
     }
 }
