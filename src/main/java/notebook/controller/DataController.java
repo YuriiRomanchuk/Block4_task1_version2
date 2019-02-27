@@ -1,8 +1,8 @@
 package notebook.controller;
 
-import notebook.exception.UserDataModelStringException;
 import notebook.initializer.DataInitializer;
 import notebook.model.UserData;
+import notebook.postgressql.PostgresConnector;
 
 import java.util.List;
 import java.util.Map;
@@ -23,7 +23,11 @@ public class DataController {
         dataInitializer.fillInitializer(userDataValues, errorsData);
         dataInitializer.fillUserDataModel(userData);
 
-        SqlController sqlController = new SqlController(userData, viewDataController);
+        PostgresConnector postgresConnector = new PostgresConnector("file/SqlConnectData", ";");
+
+
+
+       /* SqlController sqlController = new SqlController(userData, viewDataController);
 
         boolean nicknameCorrect = false;
         while (!nicknameCorrect) {
@@ -35,9 +39,10 @@ public class DataController {
                 dataInitializer.fillKeyFields(userData);
             }
         }
-
+*/
         return userData;
 
     }
 
 }
+
