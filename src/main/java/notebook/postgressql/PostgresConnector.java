@@ -41,7 +41,9 @@ public class PostgresConnector {
     private Connection ConnectBase(String serverName, String port, String baseName, String login, String password) {
 
         loadDriver();
-        try (Connection connection = DriverManager.getConnection("jdbc:postgresql://" + serverName + ":" + port + "/" + baseName + "", "" + login + "", "" + password + "")) {
+        try (Connection connection = DriverManager.getConnection("jdbc:postgresql://" + serverName + ":" + port + "/" + baseName + "",
+                "" + login + "",
+                "" + password + "")) {
             return connection;
         } catch (SQLException e) {
             System.out.println("Connection Failed!");
