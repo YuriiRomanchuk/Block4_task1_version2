@@ -13,15 +13,17 @@ public class PostgresConnector {
 
     private String pathToSqlConnectData;
     private String separator;
+    private Map<String, String> sqlConnectionData;
 
     public PostgresConnector(String pathToSqlConnectData, String separator) {
         this.pathToSqlConnectData = pathToSqlConnectData;
         this.separator = separator;
+        prepareSqlConnectionData();
     }
+
 
     public Connection receiveSqlConnection() {
 
-        Map<String, String> sqlConnectionData = prepareSqlСonnectionData();
         return ConnectBase(sqlConnectionData.get("serverName"),
                 sqlConnectionData.get("port"),
                 sqlConnectionData.get("baseName"),
@@ -52,7 +54,7 @@ public class PostgresConnector {
         }
     }
 
-    private Map<String, String> prepareSqlСonnectionData() {
+    private void prepareSqlConnectionData() {
 
         Map<String, String> sqlConnectionData = new HashMap<>();
 
@@ -64,7 +66,6 @@ public class PostgresConnector {
             sqlConnectionData.put(string.substring(0, index - 1), string.substring(index + 1));
         }
 
-        return sqlConnectionData;
     }
 
 }
