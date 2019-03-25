@@ -1,8 +1,8 @@
 package notebook.controller;
 
+import notebook.dao.DataSource;
 import notebook.initializer.DataInitializer;
 import notebook.model.UserData;
-import notebook.postgressql.PostgresConnector;
 
 import java.util.List;
 import java.util.Map;
@@ -23,7 +23,7 @@ public class DataController {
         dataInitializer.fillInitializer(userDataValues, errorsData);
         dataInitializer.fillUserDataModel(userData);
 
-        PostgresConnector postgresConnector = new PostgresConnector("file/SqlConnectData", ";");
+        DataSource dataSource = new DataSource("file/SqlConnectData", ";");
 
 
 

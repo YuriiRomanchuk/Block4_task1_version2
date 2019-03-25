@@ -11,7 +11,7 @@ public class MainClass {
         AccessPoint accessPoint = new AccessPoint(viewDataController, new DataController(viewDataController));
         accessPoint.startProgram();*/
 
-    /*    PostgresConnector postgresConnector = new PostgresConnector();
+    /*    DataSource postgresConnector = new DataSource();
         postgresConnector.ConnectBase();*/
 
         ResourceFileReader resourceFileReader = new ResourceFileReader();

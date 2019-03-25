@@ -1,4 +1,4 @@
-package notebook.postgressql;
+package notebook.dao;
 
 import notebook.resourcefile.ResourceFileReader;
 
@@ -10,13 +10,13 @@ import java.util.List;
 
 public class PostgresController {
 
-    private PostgresConnector postgresConnector;
+    private DataSource dataSource;
     private Connection connection;
     private Statement statement;
     private ResultSet resultSet;
 
-    public PostgresController(PostgresConnector postgresConnector) {
-        this.postgresConnector = postgresConnector;
+    public PostgresController(DataSource dataSource) {
+        this.dataSource = dataSource;
         initializeBase();
     }
 
@@ -34,7 +34,7 @@ public class PostgresController {
     private ResultSet receiveQueryResult(String query) {
 
         try {
-            connection = postgresConnector.receiveSqlConnection();
+            connection = dataSource.receiveSqlConnection();
             statement = connection.createStatement();
             resultSet = statement.executeQuery(query);
             return resultSet;

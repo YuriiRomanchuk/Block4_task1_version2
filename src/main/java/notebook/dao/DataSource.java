@@ -1,4 +1,4 @@
-package notebook.postgressql;
+package notebook.dao;
 
 import notebook.resourcefile.ResourceFileReader;
 
@@ -9,18 +9,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class PostgresConnector {
+public class DataSource {
 
     private String pathToSqlConnectData;
     private String separator;
     private Map<String, String> sqlConnectionData;
 
-    public PostgresConnector(String pathToSqlConnectData, String separator) {
+    public DataSource(String pathToSqlConnectData, String separator) {
         this.pathToSqlConnectData = pathToSqlConnectData;
         this.separator = separator;
         prepareSqlConnectionData();
     }
-
 
     public Connection receiveSqlConnection() {
 
@@ -30,7 +29,6 @@ public class PostgresConnector {
                 sqlConnectionData.get("login"),
                 sqlConnectionData.get("password"));
     }
-
 
     private void loadDriver() {
         try {
@@ -48,9 +46,7 @@ public class PostgresConnector {
                 "" + password + "")) {
             return connection;
         } catch (SQLException e) {
-            System.out.println("Connection Failed!");
-            e.printStackTrace();
-            return null;
+            throw new RuntimeException(e);
         }
     }
 

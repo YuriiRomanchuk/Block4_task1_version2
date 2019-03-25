@@ -2,6 +2,7 @@ package notebook.model;
 
 public class UserAddress {
 
+    private int id;
     private int index;
     private String city;
     private String street;
