@@ -20,11 +20,11 @@ public class DataController {
     public UserData processUserData(Map<String, String> userDataValues, List<String> errorsData) {
 
         UserData userData = new UserData();
-        dataInitializer.fillInitializer(userDataValues, errorsData);
+       /* dataInitializer.fillInitializer(userDataValues, errorsData);
         dataInitializer.fillUserDataModel(userData);
 
         DataSource dataSource = new DataSource("file/SqlConnectData", ";");
-
+*/
 
 
        /* SqlController sqlController = new SqlController(userData, viewDataController);

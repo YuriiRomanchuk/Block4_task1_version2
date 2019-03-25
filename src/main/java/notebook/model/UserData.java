@@ -3,11 +3,13 @@ package notebook.model;
 
 import notebook.currentEnum.Groups;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class UserData {
 
+    private int id;
     private String lastName = "";
     private String firstName = "";
     private String middleName = "";
@@ -22,7 +24,19 @@ public class UserData {
     private String mobilePhoneNumberSecond = "";
     private Date entryDate;
     private Date dateOfLastChange;
-    private List<UserAddress> userAddresses;
+    private List<UserAddress> userAddresses = new ArrayList<>();
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void fillUserAddresses(UserAddress userAddresses) {
+        this.userAddresses.add(userAddresses);
+    }
 
     public void setUserAddresses(List<UserAddress> userAddresses) {
         this.userAddresses = userAddresses;

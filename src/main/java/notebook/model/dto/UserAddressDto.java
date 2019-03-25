@@ -1,6 +1,6 @@
-package notebook.model;
+package notebook.model.dto;
 
-public class UserAddress {
+public class UserAddressDto {
 
     private int id;
     private int index;
@@ -9,12 +9,34 @@ public class UserAddress {
     private String houseNumber;
     private int flatNumber;
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public int getId() {
         return id;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public String getHouseNumber() {
+        return houseNumber;
+    }
+
+    public int getFlatNumber() {
+        return flatNumber;
+    }
+
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setIndex(int index) {
@@ -35,16 +57,5 @@ public class UserAddress {
 
     public void setFlatNumber(int flatNumber) {
         this.flatNumber = flatNumber;
-    }
-
-    @Override
-    public String toString() {
-        return "UserAddress{" + "\n" +
-                "index='" + index + '\'' + "\n" +
-                ", city='" + city + '\'' + "\n" +
-                ", street='" + street + '\'' + "\n" +
-                ", houseNumber='" + houseNumber + '\'' + "\n" +
-                ", flatNumber='" + flatNumber + '\'' + "\n" +
-                '}';
     }
 }

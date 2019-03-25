@@ -14,11 +14,5 @@ public class MainClass {
     /*    DataSource postgresConnector = new DataSource();
         postgresConnector.ConnectBase();*/
 
-        ResourceFileReader resourceFileReader = new ResourceFileReader();
-        List<String> strings = resourceFileReader.receiveFileStrings("file/SqlConnectData");
-        List<String> parseStrings = resourceFileReader.parseFileStrings(strings, ";");
-
-        parseStrings.forEach(s -> System.out.println(s));
-
     }
 }
